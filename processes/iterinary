@@ -1,0 +1,39 @@
+/*10*/
+	add logic to time in check if the user if time in is holiday,offset, or normal attendance
+	
+	design hr mainActivity 
+	
+	table in attendance altered 
+	
+	4:41 design of employees and workdays in hr
+	
+	if(workdays){ 
+		
+		if(holiday and have holiday attendance){			--> holiday attendance then double pay
+			
+			if(attendance(time_in) is offset){
+				//then normal attendance
+			
+			}else{
+				//add flag to double pay
+			
+			}
+			
+		}else{
+			//then normal attendance
+			
+			
+		
+		}
+	
+	}else{
+	
+		if(attendance(time_in) is offset){
+			//then normal attendance
+		
+		}else{
+			//dont have work today
+			
+		}
+		
+	}

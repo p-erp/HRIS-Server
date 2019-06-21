@@ -1,0 +1,61 @@
+<?php
+    include_once('../database/database.php');
+	date_default_timezone_set("Asia/Manila");
+	$response = array();
+	$user_id = $_POST['user_id'];
+	/*
+    $time_in = $_POST['time_in'];	
+	$day_in = $_POST['day_in'];
+	$month_in = $_POST['month_in'];
+	$year_in = $_POST['year_in'];
+	*/
+	$month = (date('m'));
+	$year = (date('Y'));
+	$day = (date('d'));
+	$time = date("h:i:s a");
+	
+	$location_in_lat = $_POST['location_in_lat'];
+    $location_in_long = $_POST['location_in_long'];
+	/*
+	$day_out = $_POST['day_out'];
+	$month_out = $_POST['month_out'];
+	$year_out = $_POST['year_out'];
+	$time_out = $_POST['time_out'];
+	*/
+	
+	$location_out_lat = $_POST['location_out_lat'];
+    $location_out_long = $_POST['location_out_long'];
+	
+
+	$sql = mysqli_query($conn,"SELECT attendance_id  FROM attendance where user_id = '$user_id' AND time_in != '' AND time_out = ''");
+		if (mysqli_num_rows($sql) > 0){
+			$update = mysqli_query($conn,"UPDATE attendance set time_out = '$time'
+				,year_out = '$year'
+				,month_out = '$month'
+				,day_out = '$day'
+				,location_out_lat = '$location_out_lat'
+				,location_out_long = '$location_out_long'
+										WHERE user_id = '$user_id'");
+			if($update){
+				echo "time_out_success";					
+			}else{
+				echo "time_out_failed";	
+			}
+		
+		}else{
+			//insert
+			$insert = mysqli_query($conn,"INSERT INTO attendance(user_id,time_in,month_in,day_in,year_in,location_in_lat,location_in_long) 
+					values ('$user_id','$time','$month','$day','$year','$location_in_lat','$location_in_long')");
+			if($insert){
+				echo "time_in_success";					
+			}else{
+				echo "time_in_failed";	
+			}
+		}
+		
+		
+		
+	
+
+
+ ?>
